@@ -1,0 +1,164 @@
+/* ---- Tokens ---- */
+:root{
+  --paper:#F7F5F0;
+  --ink:#1F2A24;
+  --ink-soft:#5B6660;
+  --line:#E4DFD3;
+  --card:#FFFFFF;
+  --teal:#2F6F5E;
+  --teal-soft:#E7F0EC;
+  --amber:#C05621;
+  --amber-soft:#FBEADD;
+  --blue:#4A6FA5;
+  --blue-soft:#E9EFF7;
+
+  --display: 'Fraunces', serif;
+  --body: 'Inter', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  line-height:1.5;
+}
+
+h1,h2,h3{ font-family:var(--display); font-weight:600; margin:0 0 6px; }
+h1{ font-size:1.7rem; }
+h2{ font-size:1.35rem; }
+h3{ font-size:1.05rem; margin-top:28px; }
+.muted{ color:var(--ink-soft); margin:0 0 18px; font-size:0.95rem; }
+
+/* ---- Top bar / signature pulse-line ---- */
+.topbar{
+  position:relative;
+  background:var(--ink);
+  color:var(--paper);
+  overflow:hidden;
+  padding:34px 24px 26px;
+}
+.pulse{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0.35;
+}
+.pulse polyline{
+  fill:none;
+  stroke:#6FBFA6;
+  stroke-width:1.4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.topbar-inner{ position:relative; max-width:920px; margin:0 auto; }
+.brand{ display:flex; align-items:baseline; gap:10px; }
+.brand-mark{ font-family:var(--display); font-size:1.6rem; color:#6FBFA6; }
+.brand-name{ font-family:var(--display); font-size:1.5rem; font-weight:600; letter-spacing:0.2px; }
+.brand-tagline{ margin:6px 0 0; color:#C9D3CD; font-size:0.95rem; }
+
+/* ---- Layout ---- */
+.shell{ max-width:920px; margin:0 auto; padding:28px 24px 60px; display:flex; flex-direction:column; gap:22px; }
+.panel{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:26px 28px;
+}
+.hidden{ display:none; }
+
+/* ---- Upload / dropzone ---- */
+#dropzone{
+  display:block;
+  border:1.5px dashed #C6BEA8;
+  border-radius:12px;
+  padding:34px 20px;
+  text-align:center;
+  cursor:pointer;
+  transition:border-color .15s ease, background .15s ease;
+}
+#dropzone:hover, #dropzone:focus-within{ border-color:var(--teal); background:var(--teal-soft); }
+#dropzone.is-busy{ opacity:0.6; pointer-events:none; }
+.dz-content{ display:flex; flex-direction:column; align-items:center; gap:6px; }
+.dz-icon{ font-size:1.4rem; color:var(--teal); }
+.dz-title{ font-weight:500; }
+.dz-sub{ font-size:0.82rem; color:var(--ink-soft); }
+.status{ margin-top:14px; font-size:0.9rem; }
+.status.loading{ color:var(--blue); }
+.status.error{ color:var(--amber); }
+.status.success{ color:var(--teal); }
+
+.chat-form button:disabled{ opacity:0.6; cursor:not-allowed; }
+#chat-input:disabled{ opacity:0.6; }
+
+/* ---- Results header + dial ---- */
+.results-head{ display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+.score-dial{ position:relative; width:110px; height:110px; flex-shrink:0; }
+.score-dial svg{ width:100%; height:100%; transform:rotate(-90deg); }
+.dial-track{ fill:none; stroke:var(--line); stroke-width:9; }
+.dial-fill{ fill:none; stroke:var(--teal); stroke-width:9; stroke-linecap:round;
+  stroke-dasharray:326.7; stroke-dashoffset:326.7; transition:stroke-dashoffset .8s ease, stroke .3s ease; }
+.dial-label{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+#score-value{ font-family:var(--mono); font-size:1.5rem; font-weight:600; }
+.dial-caption{ font-size:0.68rem; color:var(--ink-soft); text-align:center; line-height:1.2; margin-top:2px; }
+
+/* ---- Lab table ---- */
+.table-wrap{ overflow-x:auto; margin-top:18px; }
+.lab-table{ width:100%; border-collapse:collapse; font-family:var(--mono); font-size:0.88rem; }
+.lab-table th{
+  text-align:left; font-family:var(--body); font-weight:600; font-size:0.78rem;
+  text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-soft);
+  border-bottom:1.5px solid var(--ink); padding:8px 10px;
+}
+.lab-table td{ padding:10px; border-bottom:1px solid var(--line); }
+.pill{ display:inline-block; padding:2px 9px; border-radius:20px; font-size:0.76rem; font-family:var(--body); font-weight:600; }
+.pill.normal{ background:var(--teal-soft); color:var(--teal); }
+.pill.high{ background:var(--amber-soft); color:var(--amber); }
+.pill.low, .pill.deficient{ background:var(--blue-soft); color:var(--blue); }
+
+/* ---- Explanations ---- */
+.explanations{ margin-top:20px; display:flex; flex-direction:column; gap:10px; }
+.explain-item{ padding:12px 14px; border-left:3px solid var(--line); font-size:0.92rem; }
+.explain-item.high{ border-color:var(--amber); }
+.explain-item.low, .explain-item.deficient{ border-color:var(--blue); }
+.explain-item.normal{ border-color:var(--teal); }
+.explain-item b{ font-family:var(--mono); }
+
+/* ---- Risks ---- */
+.risks-list{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:10px; }
+@media (max-width:640px){ .risks-list{ grid-template-columns:1fr; } }
+.risk-card{ background:var(--amber-soft); border-radius:10px; padding:14px 16px; }
+.risk-card h4{ margin:0 0 4px; font-size:0.95rem; font-family:var(--body); font-weight:600; color:var(--amber); }
+.risk-card p{ margin:0 0 8px; font-size:0.88rem; }
+.risk-card ul{ margin:0; padding-left:18px; font-size:0.85rem; color:var(--ink-soft); }
+
+.disclaimer{ margin-top:26px; padding-top:16px; border-top:1px solid var(--line); font-size:0.8rem; color:var(--ink-soft); }
+
+/* ---- Chat ---- */
+.chat-log{ display:flex; flex-direction:column; gap:10px; max-height:320px; overflow-y:auto; margin-bottom:14px; }
+.chat-msg{ padding:10px 14px; border-radius:10px; font-size:0.92rem; max-width:85%; }
+.chat-msg.user{ align-self:flex-end; background:var(--teal); color:white; }
+.chat-msg.bot{ align-self:flex-start; background:var(--paper); border:1px solid var(--line); }
+.chat-form{ display:flex; gap:10px; }
+#chat-input{
+  flex:1; padding:11px 14px; border-radius:9px; border:1px solid var(--line);
+  font-family:var(--body); font-size:0.92rem; background:var(--paper);
+}
+#chat-input:focus{ outline:2px solid var(--teal); outline-offset:1px; }
+.chat-form button{
+  background:var(--ink); color:var(--paper); border:none; border-radius:9px;
+  padding:0 20px; font-family:var(--body); font-weight:600; cursor:pointer;
+}
+.chat-form button:hover{ background:var(--teal); }
+
+/* ---- Footer ---- */
+.footer{ text-align:center; padding:24px; color:var(--ink-soft); font-size:0.78rem; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .dial-fill{ transition:none; }
+}
