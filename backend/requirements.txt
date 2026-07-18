@@ -1,0 +1,21 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+pydantic>=2.6
+pydantic-settings>=2.2
+python-dotenv>=1.0
+
+# PDF parsing
+pymupdf>=1.24
+
+# OCR for images / scanned reports
+easyocr>=1.7
+pytesseract>=0.3.10
+pillow>=10.3
+
+# Optional: better NLP / semantic chatbot matching (not required to run the app)
+# Install these AND set ENABLE_SEMANTIC_CHATBOT=true in .env to use them
+# sentence-transformers
+# spacy
+# transformers
+# torch
